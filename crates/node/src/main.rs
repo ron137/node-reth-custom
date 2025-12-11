@@ -1,5 +1,6 @@
 use std::sync::Arc;
 
+use base_reth_call_with_logs_rpc::{CallWithLogsApiImpl, CallWithLogsApiServer};
 use base_reth_flashblocks_rpc::{
     rpc::{EthApiExt, EthApiOverrideServer},
     state::FlashblocksState,
@@ -135,6 +136,11 @@ fn main() {
                     }
                 })
                 .extend_rpc_modules(move |ctx| {
+                    // Override eth_callMany to return logs
+                    info!(message = "Overriding eth_callMany to return logs");
+                    let call_logs_api = CallWithLogsApiImpl::new(ctx.registry.eth_api().clone());
+                    ctx.modules.replace_configured(call_logs_api.into_rpc())?;
+
                     if metering_enabled {
                         info!(message = "Starting Metering RPC");
                         let metering_api = MeteringApiImpl::new(ctx.provider().clone());

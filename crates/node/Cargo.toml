@@ -13,6 +13,7 @@ workspace = true
 
 [dependencies]
 # internal
+base-reth-call-with-logs-rpc.workspace = true
 base-reth-flashblocks-rpc.workspace = true
 base-reth-metering.workspace = true
 base-reth-transaction-tracing.workspace = true

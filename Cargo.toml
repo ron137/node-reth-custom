@@ -9,6 +9,7 @@ repository = "https://github.com/base/node-reth"
 [workspace]
 resolver = "2"
 members = [
+    "crates/call-with-logs-rpc",
     "crates/flashblocks-rpc",
     "crates/metering",
     "crates/node",
@@ -38,6 +39,7 @@ codegen-units = 1
 
 [workspace.dependencies]
 # internal
+base-reth-call-with-logs-rpc = { path = "crates/call-with-logs-rpc" }
 base-reth-flashblocks-rpc = { path = "crates/flashblocks-rpc" }
 base-reth-metering = { path = "crates/metering" }
 base-reth-node = { path = "crates/node" }
@@ -64,6 +66,9 @@ reth-e2e-test-utils = { git = "https://github.com/paradigmxyz/reth", tag = "v1.9
 reth-transaction-pool = { git = "https://github.com/paradigmxyz/reth", tag = "v1.9.3" }
 reth-primitives-traits = { git = "https://github.com/paradigmxyz/reth", tag = "v1.9.3" }
 reth-evm = { git = "https://github.com/paradigmxyz/reth", tag = "v1.9.3" }
+reth-revm = { git = "https://github.com/paradigmxyz/reth", tag = "v1.9.3" }
+reth-rpc-eth-types = { git = "https://github.com/paradigmxyz/reth", tag = "v1.9.3" }
+reth-storage-api = { git = "https://github.com/paradigmxyz/reth", tag = "v1.9.3" }
 reth-cli-util = { git = "https://github.com/paradigmxyz/reth", tag = "v1.9.3" }
 reth-exex = { git = "https://github.com/paradigmxyz/reth", tag = "v1.9.3" }
 reth-db = { git = "https://github.com/paradigmxyz/reth", tag = "v1.9.3" }
@@ -73,6 +78,8 @@ reth-db-common = { git = "https://github.com/paradigmxyz/reth", tag = "v1.9.3" }
 # revm
 revm = { version = "31.0.2", default-features = false }
 revm-bytecode = { version = "7.1.1", default-features = false }
+revm-database = { version = "9.0.5", default-features = false }
+revm-database-interface = { version = "8.0.5", default-features = false }
 
 # alloy
 alloy-primitives = { version = "1.4.1", default-features = false, features = [
@@ -125,6 +132,7 @@ metrics = "0.24.1"
 metrics-derive = "0.1"
 itertools = "0.14"
 eyre = { version = "0.6.12" }
+hex = "0.4"
 uuid = { version = "1.6.1", features = ["serde", "v5", "v4"] }
 time = { version = "0.3.36", features = ["macros", "formatting", "parsing"] }
 chrono = "0.4.41"
